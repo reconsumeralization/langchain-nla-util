@@ -149,8 +149,7 @@ class Anthropic(LLM, BaseModel):
             stop_sequences=stop,
             **self._default_params,
         )
-        text = response["completion"]
-        return text
+        return response["completion"]
 
     def stream(self, prompt: str, stop: Optional[List[str]] = None) -> Generator:
         r"""Call Anthropic completion_stream and return the resulting generator.

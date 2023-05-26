@@ -32,15 +32,13 @@ class SQLDatabase:
         self._all_tables = set(self._inspector.get_table_names(schema=schema))
         self._include_tables = set(include_tables) if include_tables else set()
         if self._include_tables:
-            missing_tables = self._include_tables - self._all_tables
-            if missing_tables:
+            if missing_tables := self._include_tables - self._all_tables:
                 raise ValueError(
                     f"include_tables {missing_tables} not found in database"
                 )
         self._ignore_tables = set(ignore_tables) if ignore_tables else set()
         if self._ignore_tables:
-            missing_tables = self._ignore_tables - self._all_tables
-            if missing_tables:
+            if missing_tables := self._ignore_tables - self._all_tables:
                 raise ValueError(
                     f"ignore_tables {missing_tables} not found in database"
                 )
@@ -59,11 +57,11 @@ class SQLDatabase:
                 )
             # only keep the tables that are also present in the database
             intersection = set(self._custom_table_info).intersection(self._all_tables)
-            self._custom_table_info = dict(
-                (table, self._custom_table_info[table])
+            self._custom_table_info = {
+                table: self._custom_table_info[table]
                 for table in self._custom_table_info
                 if table in intersection
-            )
+            }
 
         self._metadata = metadata or MetaData()
         self._metadata.reflect(bind=self._engine)
@@ -101,8 +99,7 @@ class SQLDatabase:
         """
         all_table_names = self.get_table_names()
         if table_names is not None:
-            missing_tables = set(table_names).difference(all_table_names)
-            if missing_tables:
+            if missing_tables := set(table_names).difference(all_table_names):
                 raise ValueError(f"table_names {missing_tables} not found in database")
             all_table_names = table_names
 
@@ -165,8 +162,7 @@ class SQLDatabase:
             else:
                 tables.append(create_table)
 
-        final_str = "\n\n".join(tables)
-        return final_str
+        return "\n\n".join(tables)
 
     def run(self, command: str, fetch: str = "all") -> str:
         """Execute a SQL command and return a string representing the results.

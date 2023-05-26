@@ -20,10 +20,7 @@ class FakeLLM(LLM, BaseModel):
         """First try to lookup in queries, else return 'foo' or 'bar'."""
         if self.queries is not None:
             return self.queries[prompt]
-        if stop is None:
-            return "foo"
-        else:
-            return "bar"
+        return "foo" if stop is None else "bar"
 
     @property
     def _identifying_params(self) -> Mapping[str, Any]:

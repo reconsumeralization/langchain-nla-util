@@ -18,8 +18,8 @@ from langchain.vectorstores.base import VectorStore
 def _get_chat_history(chat_history: List[Tuple[str, str]]) -> str:
     buffer = ""
     for human_s, ai_s in chat_history:
-        human = "Human: " + human_s
-        ai = "Assistant: " + ai_s
+        human = f"Human: {human_s}"
+        ai = f"Assistant: {ai_s}"
         buffer += "\n" + "\n".join([human, ai])
     return buffer
 
@@ -52,7 +52,7 @@ class ChatVectorDBChain(Chain, BaseModel):
         """
         _output_keys = [self.output_key]
         if self.return_source_documents:
-            _output_keys = _output_keys + ["source_documents"]
+            _output_keys += ["source_documents"]
         return _output_keys
 
     @classmethod

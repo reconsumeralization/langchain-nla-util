@@ -125,10 +125,10 @@ class ElasticVectorSearch(VectorStore):
         script_query = _default_script_query(embedding)
         response = self.client.search(index=self.index_name, query=script_query)
         hits = [hit["_source"] for hit in response["hits"]["hits"][:k]]
-        documents = [
-            Document(page_content=hit["text"], metadata=hit["metadata"]) for hit in hits
+        return [
+            Document(page_content=hit["text"], metadata=hit["metadata"])
+            for hit in hits
         ]
-        return documents
 
     @classmethod
     def from_texts(

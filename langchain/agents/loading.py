@@ -32,10 +32,8 @@ def _load_agent_from_tools(
     if config_type not in AGENT_TO_CLASS:
         raise ValueError(f"Loading {config_type} agent not supported")
 
-    if config_type not in AGENT_TO_CLASS:
-        raise ValueError(f"Loading {config_type} agent not supported")
     agent_cls = AGENT_TO_CLASS[config_type]
-    combined_config = {**config, **kwargs}
+    combined_config = config | kwargs
     return agent_cls.from_llm_and_tools(llm, tools, **combined_config)
 
 
@@ -48,8 +46,7 @@ def load_agent_from_config(
     """Load agent from Config Dict."""
     if "_type" not in config:
         raise ValueError("Must specify an agent Type in config")
-    load_from_tools = config.pop("load_from_llm_and_tools", False)
-    if load_from_tools:
+    if load_from_tools := config.pop("load_from_llm_and_tools", False):
         if llm is None:
             raise ValueError(
                 "If `load_from_llm_and_tools` is set to True, "
@@ -73,7 +70,7 @@ def load_agent_from_config(
         config["llm_chain"] = load_chain(config.pop("llm_chain_path"))
     else:
         raise ValueError("One of `llm_chain` and `llm_chain_path` should be specified.")
-    combined_config = {**config, **kwargs}
+    combined_config = config | kwargs
     return agent_cls(**combined_config)  # type: ignore
 
 
@@ -90,10 +87,7 @@ def load_agent(path: Union[str, Path], **kwargs: Any) -> Agent:
 def _load_agent_from_file(file: Union[str, Path], **kwargs: Any) -> Agent:
     """Load agent from file."""
     # Convert file to Path object.
-    if isinstance(file, str):
-        file_path = Path(file)
-    else:
-        file_path = file
+    file_path = Path(file) if isinstance(file, str) else file
     # Load from either json or yaml.
     if file_path.suffix == ".json":
         with open(file_path) as f:

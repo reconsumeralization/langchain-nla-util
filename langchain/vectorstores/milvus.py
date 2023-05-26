@@ -66,7 +66,7 @@ class Milvus(VectorStore):
                 self.fields.remove(x.name)
             if x.is_primary:
                 self.primary_field = x.name
-            if x.dtype == DataType.FLOAT_VECTOR or x.dtype == DataType.BINARY_VECTOR:
+            if x.dtype in [DataType.FLOAT_VECTOR, DataType.BINARY_VECTOR]:
                 self.vector_field = x.name
 
         # Default search params when one is not provided.
@@ -358,10 +358,10 @@ class Milvus(VectorStore):
         embeddings = embedding.embed_query(texts[0])
         dim = len(embeddings)
         # Generate unique names
-        primary_field = "c" + str(uuid.uuid4().hex)
-        vector_field = "c" + str(uuid.uuid4().hex)
-        text_field = "c" + str(uuid.uuid4().hex)
-        collection_name = "c" + str(uuid.uuid4().hex)
+        primary_field = f"c{str(uuid.uuid4().hex)}"
+        vector_field = f"c{str(uuid.uuid4().hex)}"
+        text_field = f"c{str(uuid.uuid4().hex)}"
+        collection_name = f"c{str(uuid.uuid4().hex)}"
         fields = []
         # Determine metadata schema
         if metadatas:
@@ -394,16 +394,17 @@ class Milvus(VectorStore):
         max_length = 0
         for y in texts:
             max_length = max(max_length, len(y))
-        # Create the text field
-        fields.append(
-            FieldSchema(text_field, DataType.VARCHAR, max_length=max_length + 1)
+        fields.extend(
+            (
+                FieldSchema(
+                    text_field, DataType.VARCHAR, max_length=max_length + 1
+                ),
+                FieldSchema(
+                    primary_field, DataType.INT64, is_primary=True, auto_id=True
+                ),
+                FieldSchema(vector_field, DataType.FLOAT_VECTOR, dim=dim),
+            )
         )
-        # Create the primary key field
-        fields.append(
-            FieldSchema(primary_field, DataType.INT64, is_primary=True, auto_id=True)
-        )
-        # Create the vector field
-        fields.append(FieldSchema(vector_field, DataType.FLOAT_VECTOR, dim=dim))
         # Create the schema for the collection
         schema = CollectionSchema(fields)
         # Create the collection

@@ -92,7 +92,7 @@ class GoogleDriveLoader(BaseLoader, BaseModel):
         fh = BytesIO()
         downloader = MediaIoBaseDownload(fh, request)
         done = False
-        while done is False:
+        while not done:
             status, done = downloader.next_chunk()
         text = fh.getvalue().decode("utf-8")
         metadata = {"source": f"https://docs.google.com/document/d/{id}/edit"}

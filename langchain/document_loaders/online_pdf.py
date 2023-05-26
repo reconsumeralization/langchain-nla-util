@@ -23,8 +23,7 @@ class OnlinePDFLoader(BaseLoader):
         r = requests.get(self.web_path)
         with tempfile.TemporaryDirectory() as temp_dir:
             file_path = Path(temp_dir) / "online_file.pdf"
-            file = open(file_path, "wb")
-            file.write(r.content)
-            file.close()
+            with open(file_path, "wb") as file:
+                file.write(r.content)
             loader = UnstructuredPDFLoader(str(file_path))
             return loader.load()

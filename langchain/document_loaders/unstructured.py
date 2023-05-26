@@ -37,7 +37,7 @@ class UnstructuredBaseLoader(BaseLoader, ABC):
         """Load file."""
         elements = self._get_elements()
         if self.mode == "elements":
-            docs: List[Document] = list()
+            docs: List[Document] = []
             for element in elements:
                 metadata = self._get_metadata()
                 # NOTE(MthwRobinson) - the attribute check is for backward compatibility

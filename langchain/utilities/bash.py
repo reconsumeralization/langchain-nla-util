@@ -25,9 +25,7 @@ class BashProcess:
                 stderr=subprocess.STDOUT,
             ).stdout.decode()
         except subprocess.CalledProcessError as error:
-            if self.return_err_output:
-                return error.stdout.decode()
-            return str(error)
+            return error.stdout.decode() if self.return_err_output else str(error)
         if self.strip_newlines:
             output = output.strip()
         return output

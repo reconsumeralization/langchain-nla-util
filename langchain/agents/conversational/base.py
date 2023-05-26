@@ -82,8 +82,8 @@ class ConversationalAgent(Agent):
         match = re.search(regex, llm_output)
         if not match:
             raise ValueError(f"Could not parse LLM output: `{llm_output}`")
-        action = match.group(1)
-        action_input = match.group(2)
+        action = match[1]
+        action_input = match[2]
         return action.strip(), action_input.strip(" ").strip('"')
 
     @classmethod

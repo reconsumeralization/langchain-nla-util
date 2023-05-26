@@ -66,7 +66,7 @@ class VectorDBQA(Chain, BaseModel):
         """
         _output_keys = [self.output_key]
         if self.return_source_documents:
-            _output_keys = _output_keys + ["source_documents"]
+            _output_keys += ["source_documents"]
         return _output_keys
 
     # TODO: deprecate this
