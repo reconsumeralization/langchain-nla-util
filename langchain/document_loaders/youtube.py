@@ -40,7 +40,7 @@ class YoutubeLoader(BaseLoader):
             # Get more video meta info
             # Such as title, description, thumbnail url, publish_date
             video_info = self._get_video_info()
-            metadata.update(video_info)
+            metadata |= video_info
 
         transcript_pieces = YouTubeTranscriptApi.get_transcript(
             self.video_id, languages=(self.language,)
@@ -69,7 +69,7 @@ class YoutubeLoader(BaseLoader):
                 "Please it install it with `pip install pytube`."
             )
         yt = YouTube(f"https://www.youtube.com/watch?v={self.video_id}")
-        video_info = {
+        return {
             "title": yt.title,
             "description": yt.description,
             "view_count": yt.views,
@@ -78,4 +78,3 @@ class YoutubeLoader(BaseLoader):
             "length": yt.length,
             "author": yt.author,
         }
-        return video_info

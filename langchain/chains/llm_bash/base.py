@@ -58,20 +58,19 @@ class LLMBashChain(Chain, BaseModel):
         self.callback_manager.on_text(t, color="green", verbose=self.verbose)
 
         t = t.strip()
-        if t.startswith("```bash"):
-            # Split the string into a list of substrings
-            command_list = t.split("\n")
-            print(command_list)
+        if not t.startswith("```bash"):
+            raise ValueError(f"unknown format from LLM: {t}")
+        # Split the string into a list of substrings
+        command_list = t.split("\n")
+        print(command_list)
 
             # Remove the first and last substrings
-            command_list = [s for s in command_list[1:-1]]
-            output = bash_executor.run(command_list)
+        command_list = list(command_list[1:-1])
+        output = bash_executor.run(command_list)
 
-            self.callback_manager.on_text("\nAnswer: ", verbose=self.verbose)
-            self.callback_manager.on_text(output, color="yellow", verbose=self.verbose)
+        self.callback_manager.on_text("\nAnswer: ", verbose=self.verbose)
+        self.callback_manager.on_text(output, color="yellow", verbose=self.verbose)
 
-        else:
-            raise ValueError(f"unknown format from LLM: {t}")
         return {self.output_key: output}
 
     @property

@@ -103,17 +103,15 @@ class RegexParser(BaseOutputParser, BaseModel):
 
     def parse(self, text: str) -> Dict[str, str]:
         """Parse the output of an LLM call."""
-        match = re.search(self.regex, text)
-        if match:
-            return {key: match.group(i + 1) for i, key in enumerate(self.output_keys)}
+        if match := re.search(self.regex, text):
+            return {key: match[i + 1] for i, key in enumerate(self.output_keys)}
+        if self.default_output_key is None:
+            raise ValueError(f"Could not parse output: {text}")
         else:
-            if self.default_output_key is None:
-                raise ValueError(f"Could not parse output: {text}")
-            else:
-                return {
-                    key: text if key == self.default_output_key else ""
-                    for key in self.output_keys
-                }
+            return {
+                key: text if key == self.default_output_key else ""
+                for key in self.output_keys
+            }
 
 
 class StringPromptValue(PromptValue):
@@ -163,10 +161,9 @@ class BasePromptTemplate(BaseModel, ABC):
                 "internally, please rename."
             )
 
-        overall = set(values["input_variables"]).intersection(
+        if overall := set(values["input_variables"]).intersection(
             values["partial_variables"]
-        )
-        if overall:
+        ):
             raise ValueError(
                 f"Found overlapping input and partial variables: {overall}"
             )
@@ -187,7 +184,7 @@ class BasePromptTemplate(BaseModel, ABC):
             k: v if isinstance(v, str) else v()
             for k, v in self.partial_variables.items()
         }
-        return {**partial_kwargs, **kwargs}
+        return partial_kwargs | kwargs
 
     @abstractmethod
     def format(self, **kwargs: Any) -> str:
@@ -231,11 +228,7 @@ class BasePromptTemplate(BaseModel, ABC):
         if self.partial_variables:
             raise ValueError("Cannot save prompt with partial variables.")
         # Convert file to Path object.
-        if isinstance(file_path, str):
-            save_path = Path(file_path)
-        else:
-            save_path = file_path
-
+        save_path = Path(file_path) if isinstance(file_path, str) else file_path
         directory_path = save_path.parent
         directory_path.mkdir(parents=True, exist_ok=True)
 

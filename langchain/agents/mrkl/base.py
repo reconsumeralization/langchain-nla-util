@@ -44,8 +44,8 @@ def get_action_and_input(llm_output: str) -> Tuple[str, str]:
     match = re.search(regex, llm_output, re.DOTALL)
     if not match:
         raise ValueError(f"Could not parse LLM output: `{llm_output}`")
-    action = match.group(1).strip()
-    action_input = match.group(2)
+    action = match[1].strip()
+    action_input = match[2]
     return action, action_input.strip(" ").strip('"')
 
 

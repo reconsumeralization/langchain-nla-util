@@ -47,14 +47,14 @@ if __name__ == "__main__":
             browser_content = "\n".join(_crawler.crawl())
             llm_command = nat_bot_chain.execute(_crawler.page.url, browser_content)
             if not quiet:
-                print("URL: " + _crawler.page.url)
-                print("Objective: " + objective)
+                print(f"URL: {_crawler.page.url}")
+                print(f"Objective: {objective}")
                 print("----------------\n" + browser_content + "\n----------------\n")
             if len(llm_command) > 0:
-                print("Suggested command: " + llm_command)
+                print(f"Suggested command: {llm_command}")
 
             command = input()
-            if command == "r" or command == "":
+            if command in ["r", ""]:
                 run_cmd(llm_command, _crawler)
             elif command == "g":
                 url = input("URL:")

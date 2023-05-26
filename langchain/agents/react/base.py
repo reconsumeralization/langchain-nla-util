@@ -44,7 +44,7 @@ class ReActDocstoreAgent(Agent, BaseModel):
         self.i = 1
 
     def _fix_text(self, text: str) -> str:
-        return text + f"\nAction {self.i}:"
+        return f"{text}\nAction {self.i}:"
 
     def _extract_tool_and_input(self, text: str) -> Optional[Tuple[str, str]]:
         action_prefix = f"Action {self.i}: "
@@ -58,7 +58,7 @@ class ReActDocstoreAgent(Agent, BaseModel):
         re_matches = re.search(r"(.*?)\[(.*?)\]", action_str)
         if re_matches is None:
             raise ValueError(f"Could not parse action directive: {action_str}")
-        return re_matches.group(1), re_matches.group(2)
+        return re_matches[1], re_matches[2]
 
     @property
     def finish_tool_name(self) -> str:

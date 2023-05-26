@@ -114,11 +114,7 @@ class DeepLake(VectorStore):
         else:
             embeddings = self._embedding_function.embed_documents(text_list)
 
-        if metadatas is None:
-            metadatas_to_use: Sequence[Optional[dict]] = [None] * len(text_list)
-        else:
-            metadatas_to_use = metadatas
-
+        metadatas_to_use = [None] * len(text_list) if metadatas is None else metadatas
         elements = zip(text_list, embeddings, metadatas_to_use, ids)
 
         @self._deeplake.compute
@@ -149,14 +145,13 @@ class DeepLake(VectorStore):
             indices = L2_search(query_emb, embeddings, k=k)
             ds_view = self.ds[indices]
 
-        docs = [
+        return [
             Document(
                 page_content=el["text"].data()["value"],
                 metadata=el["metadata"].data()["value"],
             )
             for el in ds_view
         ]
-        return docs
 
     @classmethod
     def from_texts(

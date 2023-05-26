@@ -78,9 +78,8 @@ class SQLDatabaseChain(Chain, BaseModel):
             "table_info": table_info,
             "stop": ["\nSQLResult:"],
         }
-        intermediate_steps = []
         sql_cmd = llm_chain.predict(**llm_inputs)
-        intermediate_steps.append(sql_cmd)
+        intermediate_steps = [sql_cmd]
         self.callback_manager.on_text(sql_cmd, color="green", verbose=self.verbose)
         result = self.database.run(sql_cmd)
         intermediate_steps.append(result)

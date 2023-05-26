@@ -23,7 +23,7 @@ class UnstructuredURLLoader(BaseLoader):
         """Load file."""
         from unstructured.partition.html import partition_html
 
-        docs: List[Document] = list()
+        docs: List[Document] = []
         for url in self.urls:
             elements = partition_html(url=url)
             text = "\n\n".join([str(el) for el in elements])

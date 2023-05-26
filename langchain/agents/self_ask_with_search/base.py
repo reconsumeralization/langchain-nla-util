@@ -46,7 +46,7 @@ class SelfAskWithSearchAgent(Agent):
 
         after_colon = text.split(":")[-1]
 
-        if " " == after_colon[0]:
+        if after_colon[0] == " ":
             after_colon = after_colon[1:]
 
         return "Intermediate Answer", after_colon

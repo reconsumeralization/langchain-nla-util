@@ -37,22 +37,21 @@ class ConversationKGMemory(BaseChatMemory, BaseModel):
         entities = self._get_current_entities(inputs)
         summaries = {}
         for entity in entities:
-            knowledge = self.kg.get_entity_knowledge(entity)
-            if knowledge:
+            if knowledge := self.kg.get_entity_knowledge(entity):
                 summaries[entity] = ". ".join(knowledge) + "."
         if summaries:
             summary_strings = [
                 f"On {entity}: {summary}" for entity, summary in summaries.items()
             ]
-            if self.return_messages:
-                context: Any = [SystemMessage(content=text) for text in summary_strings]
-            else:
-                context = "\n".join(summary_strings)
+            context = (
+                [SystemMessage(content=text) for text in summary_strings]
+                if self.return_messages
+                else "\n".join(summary_strings)
+            )
+        elif self.return_messages:
+            context = []
         else:
-            if self.return_messages:
-                context = []
-            else:
-                context = ""
+            context = ""
         return {self.memory_key: context}
 
     @property
@@ -107,8 +106,7 @@ class ConversationKGMemory(BaseChatMemory, BaseModel):
             input=input_string,
             verbose=True,
         )
-        knowledge = parse_triples(output)
-        return knowledge
+        return parse_triples(output)
 
     def _get_and_update_kg(self, inputs: Dict[str, Any]) -> None:
         """Get and update knowledge graph from the conversation history."""

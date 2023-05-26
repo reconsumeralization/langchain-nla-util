@@ -61,7 +61,7 @@ class PALChain(Chain, BaseModel):
             code, color="green", end="\n", verbose=self.verbose
         )
         repl = PythonREPL(_globals=self.python_globals, _locals=self.python_locals)
-        res = repl.run(code + f"\n{self.get_answer_expr}")
+        res = repl.run(f"{code}\n{self.get_answer_expr}")
         output = {self.output_key: res.strip()}
         if self.return_intermediate_steps:
             output["intermediate_steps"] = code

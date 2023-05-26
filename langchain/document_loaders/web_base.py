@@ -19,8 +19,7 @@ class WebBaseLoader(BaseLoader):
         from bs4 import BeautifulSoup
 
         html_doc = requests.get(url)
-        soup = BeautifulSoup(html_doc.text, "html.parser")
-        return soup
+        return BeautifulSoup(html_doc.text, "html.parser")
 
     def scrape(self) -> Any:
         """Scrape data from webpage and return it in BeautifulSoup format."""
