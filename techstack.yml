@@ -1,7 +1,8 @@
 repo_name: reconsumeralization/langchain-nla-util
 report_id: 1b1bd970701340065b195b87893305fd
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-09T16:24:05+00:00'
+timestamp: '2024-01-04T15:04:18+00:00'
 requested_by: reconsumeralization
 provider: github
 branch: master
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/docs/requirements.txt
   detection_source: docs/requirements.txt
   last_updated_by: Harrison Chase
   last_updated_on: 2022-10-24 21:51:15.000000000 Z
@@ -28,6 +30,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util
   detection_source: Repo Metadata
 - name: PostgreSQL
   description: A powerful, open source object-relational database system
@@ -37,6 +40,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1028/ASOhU5xJ.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/langchain/docker-compose.yaml
   detection_source: langchain/docker-compose.yaml
   last_updated_by: Ankush Gola
   last_updated_on: 2023-01-27 01:38:13.000000000 Z
@@ -48,6 +52,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util
   detection_source: Repo Metadata
 - name: GitHub Actions
   description: Automate your workflow from idea to production
@@ -57,7 +62,8 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
-  detection_source: ".github/workflows/test.yml"
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/.github/workflows/linkcheck.yml
+  detection_source: ".github/workflows/linkcheck.yml"
   last_updated_by: Harrison Chase
   last_updated_on: 2023-01-05 05:39:50.000000000 Z
 - name: PyPI
@@ -68,6 +74,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/pyproject.toml
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2022-10-24 21:51:15.000000000 Z
@@ -79,6 +86,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/docs/requirements.txt
   detection_source: docs/requirements.txt
   last_updated_by: Harrison Chase
   last_updated_on: 2022-10-24 21:51:15.000000000 Z
@@ -91,36 +99,39 @@ tools:
   category: Application Utilities
   sub_category: Search Engines
   image_url: https://img.stackshare.io/service/1598/TtqoAo1V.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/docs/requirements.txt
   detection_source: docs/requirements.txt
   last_updated_by: Harrison Chase
   last_updated_on: 2023-01-02 16:24:09.000000000 Z
 - name: PyYAML
   description: YAML parser and emitter for Python
-  package_url: https://pypi.org/PyYAML
+  package_url: https://pypi.org/project/PyYAML
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19829/default_74a61b43bdb9fc0cba2978316b9976f43545029b.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/pyproject.toml
   detection_source: pyproject.toml
   last_updated_by: Steven Hoelscher
   last_updated_on: 2022-12-04 00:42:59.000000000 Z
 - name: SQLAlchemy
   description: Database Abstraction Library
-  package_url: https://pypi.org/SQLAlchemy
+  package_url: https://pypi.org/project/SQLAlchemy
   license: MIT
   open_source: true
   hosted_saas: false
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19847/default_db2ab2702f70e20c272f6ce65251108fb2b8f1ea.png
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/pyproject.toml
   detection_source: pyproject.toml
   last_updated_by: Steven Hoelscher
   last_updated_on: 2022-12-04 00:42:59.000000000 Z
 - name: aiohttp
   description: Async http client/server framework
-  package_url: https://pypi.org/aiohttp
+  package_url: https://pypi.org/project/aiohttp
   version: 3.8.4
   license: Apache-2.0
   open_source: true
@@ -128,11 +139,35 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19852/default_d748224707283d9d8a73c2323730c87bda6b313a.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Ankush Gola
   last_updated_on: 2023-02-08 05:21:57.000000000 Z
   vulnerabilities:
+  - name: aiohttp's ClientSession is vulnerable to CRLF injection via version
+    cve_id: CVE-2023-49081
+    cve_url: https://github.com/advisories/GHSA-q3qx-c6g2-7pw2
+    detected_date: Nov 28
+    severity: high
+    first_patched: 3.9.0
+  - name: aiohttp has vulnerable dependency that is vulnerable to request smuggling
+    cve_id: 
+    cve_url: https://github.com/advisories/GHSA-pjjw-qhg8-p2p9
+    detected_date: Nov 29
+    severity: moderate
+    first_patched: 3.8.6
+  - name: aiohttp's ClientSession is vulnerable to CRLF injection via method
+    cve_id: CVE-2023-49082
+    cve_url: https://github.com/advisories/GHSA-qvrw-v9rv-5rjx
+    detected_date: Nov 28
+    severity: moderate
+    first_patched: 3.9.0
+  - name: AIOHTTP has problems in HTTP parser (the python one, not llhttp)
+    cve_id: CVE-2023-47627
+    cve_url: https://github.com/advisories/GHSA-gfw2-4jvh-wgfg
+    detected_date: Nov 15
+    severity: moderate
+    first_patched: 3.8.6
   - name: aiohttp.web.Application vulnerable to HTTP request smuggling via llhttp
       HTTP request parser
     cve_id: CVE-2023-37276
@@ -142,7 +177,7 @@ tools:
     first_patched: 3.8.5
 - name: beautifulsoup4
   description: Screen-scraping library
-  package_url: https://pypi.org/beautifulsoup4
+  package_url: https://pypi.org/project/beautifulsoup4
   version: 4.11.2
   license: MIT
   open_source: true
@@ -150,13 +185,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19838/default_85689b353a3a9409328e253ea28d859d29151e0c.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: dataclasses-json
   description: Easily serialize dataclasses to and from JSON
-  package_url: https://pypi.org/dataclasses-json
+  package_url: https://pypi.org/project/dataclasses-json
   version: 0.5.7
   license: MIT
   open_source: true
@@ -164,13 +199,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20519/default_ded6d17aa418fbd05ff28b85345c77ab878c6b37.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Ankush Gola
   last_updated_on: 2023-01-27 01:38:13.000000000 Z
 - name: elasticsearch
   description: Python client for Elasticsearch
-  package_url: https://pypi.org/elasticsearch
+  package_url: https://pypi.org/project/elasticsearch
   version: 8.6.2
   license: Apache-2.0
   open_source: true
@@ -178,13 +213,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19943/default_aacb529ceff756b62765790d8d6787a041d514ff.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: google-api-python-client
   description: Google API Client Library for Python
-  package_url: https://pypi.org/google-api-python-client
+  package_url: https://pypi.org/project/google-api-python-client
   version: 2.70.0
   license: Apache-2.0
   open_source: true
@@ -192,13 +227,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19897/default_4343f8bba4f6051641ffca8b4fbe9b099402c84d.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: networkx
   description: Python package for creating and manipulating graphs and networks
-  package_url: https://pypi.org/networkx
+  package_url: https://pypi.org/project/networkx
   version: 2.8.8
   license: BSD-3-Clause
   open_source: true
@@ -206,13 +241,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19877/default_8902c10687fbcd6273bdbe119fff40fa1180763f.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: nltk
   description: Natural Language Toolkit
-  package_url: https://pypi.org/nltk
+  package_url: https://pypi.org/project/nltk
   version: 3.8.1
   license: Apache-2.0
   open_source: true
@@ -220,13 +255,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20023/default_b0d1a54f127d7017fce41c15f5e85568fb7019ed.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: numpy
   description: NumPy is the fundamental package for array computing with Python
-  package_url: https://pypi.org/numpy
+  package_url: https://pypi.org/project/numpy
   version: 1.24.2
   license: BSD-3-Clause
   open_source: true
@@ -234,13 +269,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19828/default_d7c684bf2673f008a9f02ac93901229297a22d7e.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Steven Hoelscher
   last_updated_on: 2022-12-04 00:42:59.000000000 Z
 - name: pydantic
   description: Data validation and settings management using python 3.6 type hinting
-  package_url: https://pypi.org/pydantic
+  package_url: https://pypi.org/project/pydantic
   version: 1.10.5
   license: MIT
   open_source: true
@@ -248,13 +283,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20022/default_b0d1a54f127d7017fce41c15f5e85568fb7019ed.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-01-05 05:39:50.000000000 Z
 - name: redis
   description: Python client for Redis key-value store
-  package_url: https://pypi.org/redis
+  package_url: https://pypi.org/project/redis
   version: 4.5.1
   license: MIT
   open_source: true
@@ -262,7 +297,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19855/default_f812320c62a72187e593516984ac4eb92fb43040.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
@@ -281,7 +316,7 @@ tools:
     first_patched: 4.5.3
 - name: requests
   description: Python HTTP for Humans
-  package_url: https://pypi.org/requests
+  package_url: https://pypi.org/project/requests
   version: 2.28.2
   license: Apache-2.0
   open_source: true
@@ -289,7 +324,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19826/default_d7c684bf2673f008a9f02ac93901229297a22d7e.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Saurav Maheshkar
   last_updated_on: 2023-01-22 22:48:20.000000000 Z
@@ -302,7 +337,7 @@ tools:
     first_patched: 2.31.0
 - name: spacy
   description: Industrial-strength Natural Language Processing
-  package_url: https://pypi.org/spacy
+  package_url: https://pypi.org/project/spacy
   version: 3.5.0
   license: MIT
   open_source: true
@@ -310,13 +345,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20263/default_1842575018db691e6f93d8a9a1aa65cdc2a55c20.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
 - name: sphinx_rtd_theme
   description: Read the Docs theme for Sphinx
-  package_url: https://pypi.org/sphinx_rtd_theme
+  package_url: https://pypi.org/project/sphinx_rtd_theme
   version: 1.0.0
   license: MIT
   open_source: true
@@ -324,13 +359,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20304/default_506725603cd9affb22ffa36e3939310b26cbf952.png
-  detection_source_url: docs/requirements.txt
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/docs/requirements.txt
   detection_source: docs/requirements.txt
   last_updated_by: Harrison Chase
   last_updated_on: 2023-01-02 16:24:09.000000000 Z
 - name: tenacity
   description: Retry code until it succeeds
-  package_url: https://pypi.org/tenacity
+  package_url: https://pypi.org/project/tenacity
   version: 8.2.2
   license: Apache-2.0
   open_source: true
@@ -338,13 +373,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20027/default_fd02050783f95269bfcc5c4d11f1c75dd423cd1d.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Ankush Gola
   last_updated_on: 2023-02-03 03:56:26.000000000 Z
 - name: toml
   description: Python Library for Tom's Obvious, Minimal Language
-  package_url: https://pypi.org/toml
+  package_url: https://pypi.org/project/toml
   version: 0.10.2
   license: MIT
   open_source: true
@@ -352,13 +387,13 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19912/default_bc82f0b22ca8fd942e21c317967f4ab61f43eb2c.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: docs/requirements.txt
   last_updated_by: Harrison Chase
   last_updated_on: 2022-12-05 01:44:40.000000000 Z
 - name: torch
   description: Tensors and Dynamic neural networks in Python with strong GPU acceleration
-  package_url: https://pypi.org/torch
+  package_url: https://pypi.org/project/torch
   version: 1.13.1
   license: BSD-1-Clause
   open_source: true
@@ -366,7 +401,7 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/20038/default_a7a70921d2d3189665c78015850dc968f41705a1.png
-  detection_source_url: poetry.lock
+  detection_source_url: https://github.com/reconsumeralization/langchain-nla-util/blob/master/poetry.lock
   detection_source: pyproject.toml
   last_updated_by: Harrison Chase
   last_updated_on: 2023-03-04 16:38:56.000000000 Z
